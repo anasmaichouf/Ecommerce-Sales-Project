@@ -94,7 +94,7 @@ order by revenue desc
 select avg(price) as avg_price
 from TargetDB..order_items
 
--- What are the most frequently bought products together (product bundling)?
+-- What are the most frequently bought products together?
 
 SELECT oi1.product_id AS product1, oi2.product_id AS product2, COUNT(*) AS times_bought_together
 FROM TargetDB..order_items oi1
@@ -262,13 +262,13 @@ order by spending desc
 
 
 ------------------- Return and Refund Analysis --------------------
--- What percentage of orders are returned or refunded? (Canceled)
+-- What percentage of orders are Canceled?
 
 SELECT ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM TargetDB..orders), 2) AS canceled_percentage
 FROM TargetDB..orders
 WHERE order_status = 'Canceled' 
 
--- What is the average value of Canceled or Canceled orders?
+-- What is the average value of Canceled orders?
 
 select
 o.order_status, avg(oi.price) as avg_value
